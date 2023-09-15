@@ -1,0 +1,5 @@
+<resources>
+
+    <style name="Theme.JayTv" parent="android:Theme.Material.Light.NoActionBar" />
+
+</resources>
