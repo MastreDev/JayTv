@@ -8,13 +8,15 @@ import kotlinx.coroutines.rx3.rxSingle
 import kotlinx.coroutines.tasks.await
 import kotlinx.serialization.json.Json
 import kr.mastre.jaytv.playlist.domain.Playable
+import javax.inject.Inject
 
-internal class FirebaseRemoteSource(
+internal class FirebaseRemoteSource @Inject constructor(
     private val remoteConfig: FirebaseRemoteConfig,
 ) {
+
     init {
         val configSetting = remoteConfigSettings {
-            minimumFetchIntervalInSeconds = if(BuildConfig.DEBUG) 3600 else 36000
+            minimumFetchIntervalInSeconds = if (BuildConfig.DEBUG) 3600 else 36000
         }
         remoteConfig.setConfigSettingsAsync(configSetting)
     }

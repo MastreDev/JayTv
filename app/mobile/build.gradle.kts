@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -54,6 +55,9 @@ kapt {
 
 dependencies {
 
+    implementation(project(":feature:player"))
+    implementation(project(":playlist:data"))
+
     implementation(libs.androidx.ktx)
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     implementation("androidx.activity:activity-compose:1.7.2")
@@ -73,6 +77,10 @@ dependencies {
     // hilt
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
+
+    // firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+    implementation("com.google.firebase:firebase-config-ktx")
 
     testImplementation("junit:junit:4.13.2")
 
