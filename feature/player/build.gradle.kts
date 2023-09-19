@@ -50,6 +50,10 @@ dependencies {
     // orbit
     implementation(libs.bundles.orbit)
 
+    // rx
+    implementation(libs.rxKotlin)
+    implementation(libs.coroutinesToRx3)
+
     testImplementation("junit:junit:4.13.2")
     testImplementation(libs.androidx.junit.ext)
     testImplementation(libs.kotlin.test)
