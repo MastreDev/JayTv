@@ -1,6 +1,7 @@
 package kr.mastre.jaytv
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-class JayApplication : Application() {
-}
+@HiltAndroidApp
+class JayApplication : Application()
