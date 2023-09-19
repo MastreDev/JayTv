@@ -35,6 +35,10 @@ kapt {
     correctErrorTypes = true
 }
 
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
+}
+
 dependencies {
 
     implementation(libs.androidx.ktx)
@@ -46,6 +50,8 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     testImplementation("junit:junit:4.13.2")
+    testImplementation(libs.kotest)
+
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }
