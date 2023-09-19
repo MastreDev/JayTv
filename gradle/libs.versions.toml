@@ -2,7 +2,7 @@
 # gradle version
 sdk-compile = "34"
 sdk-min = "26"
-sdk-target ="34"
+sdk-target = "34"
 
 composeKotlinVersion = "1.5.2"
 agp = "8.1.1"
@@ -27,6 +27,9 @@ androidx-compose-foundation = { group = "androidx.compose.foundation", name = "f
 rxKotlin = { module = "io.reactivex.rxjava3:rxkotlin", version.ref = "rxKotlin" }
 coroutinesToRx3 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-rx3", version.ref = "coroutinesToRx3" }
 
+hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+
 #test
 kotest = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 
@@ -39,6 +42,7 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 
 google-services = { id = "com.google.gms.google-services", version = "4.3.15" }
 

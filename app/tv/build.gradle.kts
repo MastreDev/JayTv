@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.agp.app)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -42,6 +44,10 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
 
     implementation(libs.androidx.ktx)
@@ -60,6 +66,9 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.2")
     // async image loading
     implementation("io.coil-kt:coil-compose:2.2.2")
+    // hilt
+    implementation(libs.hilt)
+    kapt(libs.hilt.compiler)
 
     // exo
     implementation("androidx.media3:media3-exoplayer:1.1.1")

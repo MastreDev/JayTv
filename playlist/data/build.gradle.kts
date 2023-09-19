@@ -1,7 +1,9 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    kotlin("plugin.serialization")
+    alias(libs.plugins.agp.lib)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -37,6 +39,10 @@ tasks.withType<Test>().configureEach {
     useJUnitPlatform()
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
 
     implementation(project(":playlist:domain"))
@@ -49,6 +55,10 @@ dependencies {
     implementation(libs.coroutinesToRx3)
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+
+    // hilt
+    implementation(libs.hilt)
+    kapt(libs.hilt.compiler)
 
     testImplementation("junit:junit:4.13.2")
     testImplementation(libs.kotest)

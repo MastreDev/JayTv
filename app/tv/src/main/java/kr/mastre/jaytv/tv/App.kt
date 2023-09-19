@@ -6,7 +6,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import java.util.Stack
 
 @Composable
 fun App() {
@@ -25,8 +24,6 @@ fun App() {
                 type = NavType.LongType
             })
         ) {
-            val stack = Stack<String>()
-            val char = '1'
 //            if(it.arguments?.getLong("id") == null){
 //                throw DetailsError.NoIdSpecified
 //            }
