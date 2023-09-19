@@ -1,0 +1,46 @@
+[versions]
+# gradle version
+sdk-compile = "34"
+sdk-min = "26"
+sdk-target ="34"
+
+composeKotlinVersion = "1.5.2"
+agp = "8.1.1"
+
+kotlin = "1.9.0"
+
+composeBom = "2023.03.00"
+rxKotlin = "3.0.1"
+coroutinesToRx3 = "1.7.0"
+hilt = "2.48"
+
+#test
+kotest = "5.7.2"
+
+[libraries]
+#androidx.core:core-ktx:1.9.0
+androidx-ktx = { module = "androidx.core:core-ktx", version.ref = "kotlin" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+
+rxKotlin = { module = "io.reactivex.rxjava3:rxkotlin", version.ref = "rxKotlin" }
+coroutinesToRx3 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-rx3", version.ref = "coroutinesToRx3" }
+
+#test
+kotest = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
+
+[plugins]
+agp-app = { id = "com.android.application", version.ref = "agp" }
+agp-lib = { id = "com.android.library", version.ref = "agp" }
+
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+google-services = { id = "com.google.gms.google-services", version = "4.3.15" }
+
+[bundles]
+

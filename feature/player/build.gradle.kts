@@ -1,14 +1,14 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.agp.lib)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
     namespace = "kr.mastre.feature.player"
-    compileSdk = 33
+    compileSdk = libs.versions.sdk.compile.get().toInt()
 
     defaultConfig {
-        minSdk = 26
+        minSdk = libs.versions.sdk.min.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -31,7 +31,7 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation(libs.androidx.ktx)
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     testImplementation("junit:junit:4.13.2")

@@ -1,6 +1,6 @@
 plugins {
     id("java-library")
-    id("org.jetbrains.kotlin.jvm")
+    alias(libs.plugins.kotlin.jvm)
 }
 
 java {
@@ -17,7 +17,7 @@ tasks.withType<Test>().configureEach {
 
 dependencies {
     implementation("javax.inject:javax.inject:1")
-    implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
+    implementation(libs.rxKotlin)
 
-    testImplementation("io.kotest:kotest-runner-junit5:5.7.2")
+    testImplementation(libs.kotest)
 }
