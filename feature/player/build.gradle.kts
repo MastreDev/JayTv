@@ -41,6 +41,8 @@ tasks.withType<Test>().configureEach {
 
 dependencies {
 
+    implementation(project(":playlist:domain"))
+
     implementation(libs.androidx.ktx)
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
@@ -49,8 +51,13 @@ dependencies {
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
 
+    // orbit
+    implementation(libs.bundles.orbit)
+
     testImplementation("junit:junit:4.13.2")
     testImplementation(libs.kotest)
+    testImplementation(libs.orbit.test)
+    testImplementation(libs.mockito)
 
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

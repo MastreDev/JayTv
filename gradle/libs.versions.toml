@@ -13,9 +13,11 @@ composeBom = "2023.03.00"
 rxKotlin = "3.0.1"
 coroutinesToRx3 = "1.7.0"
 hilt = "2.48"
+orbit = "6.0.0"
 
 #test
 kotest = "5.7.2"
+mockito = "5.1.0"
 
 [libraries]
 #androidx.core:core-ktx:1.9.0
@@ -26,12 +28,15 @@ androidx-compose-foundation = { group = "androidx.compose.foundation", name = "f
 
 rxKotlin = { module = "io.reactivex.rxjava3:rxkotlin", version.ref = "rxKotlin" }
 coroutinesToRx3 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-rx3", version.ref = "coroutinesToRx3" }
-
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+orbit = { module = "org.orbit-mvi:orbit-viewmodel", version.ref = "orbit" }
+orbit-compose = { module = "org.orbit-mvi:orbit-compose", version.ref = "orbit" }
 
 #test
 kotest = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
+mockito = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockito" }
+orbit-test = { module = "org.orbit-mvi:orbit-test", version.ref = "orbit" }
 
 [plugins]
 agp-app = { id = "com.android.application", version.ref = "agp" }
@@ -47,4 +52,4 @@ kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 google-services = { id = "com.google.gms.google-services", version = "4.3.15" }
 
 [bundles]
-
+orbit = ["orbit", "orbit-compose"]
