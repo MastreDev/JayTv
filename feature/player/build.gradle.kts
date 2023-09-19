@@ -35,10 +35,6 @@ kapt {
     correctErrorTypes = true
 }
 
-tasks.withType<Test>().configureEach {
-    useJUnitPlatform()
-}
-
 dependencies {
 
     implementation(project(":playlist:domain"))
@@ -55,7 +51,9 @@ dependencies {
     implementation(libs.bundles.orbit)
 
     testImplementation("junit:junit:4.13.2")
-    testImplementation(libs.kotest)
+    testImplementation(libs.androidx.junit.ext)
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.kotest.assertion)
     testImplementation(libs.orbit.test)
     testImplementation(libs.mockito)
 

@@ -18,6 +18,7 @@ orbit = "6.0.0"
 #test
 kotest = "5.7.2"
 mockito = "5.1.0"
+androidx-junit-ext = "1.1.5"
 
 [libraries]
 #androidx.core:core-ktx:1.9.0
@@ -34,7 +35,10 @@ orbit = { module = "org.orbit-mvi:orbit-viewmodel", version.ref = "orbit" }
 orbit-compose = { module = "org.orbit-mvi:orbit-compose", version.ref = "orbit" }
 
 #test
+androidx-junit-ext = { module = "androidx.test.ext:junit-ktx", version.ref = "androidx-junit-ext" }
+kotlin-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version = "1.7.3" }
 kotest = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
+kotest-assertion = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 mockito = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockito" }
 orbit-test = { module = "org.orbit-mvi:orbit-test", version.ref = "orbit" }
 
