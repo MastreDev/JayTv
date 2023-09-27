@@ -1,6 +1,6 @@
 package kr.mastre.feature.player
 
-import kr.mastre.jaytv.playlist.domain.Playable
+import kr.mastre.playlist.Playable
 
 data class PlayerViewState(
     val playList: List<Playable>

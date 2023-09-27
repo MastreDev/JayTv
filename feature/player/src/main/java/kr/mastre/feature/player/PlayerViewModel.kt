@@ -3,7 +3,7 @@ package kr.mastre.feature.player
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.rx3.await
-import kr.mastre.jaytv.playlist.domain.GetPlayListUseCase
+import kr.mastre.playlist.GetPlayListUseCase
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.syntax.simple.reduce

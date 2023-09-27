@@ -16,6 +16,6 @@ dependencyResolutionManagement {
 rootProject.name = "JayTv"
 include(":app:mobile")
 include(":app:tv")
-include(":playlist:domain")
-include(":playlist:data")
 include(":feature:player")
+include(":playlist")
+include(":playlist:data")

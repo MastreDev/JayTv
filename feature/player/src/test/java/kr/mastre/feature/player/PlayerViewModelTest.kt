@@ -2,8 +2,8 @@ package kr.mastre.feature.player
 
 import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.test.runTest
-import kr.mastre.jaytv.playlist.domain.GetPlayListUseCase
-import kr.mastre.jaytv.playlist.domain.Playable
+import kr.mastre.playlist.GetPlayListUseCase
+import kr.mastre.playlist.Playable
 import org.junit.Test
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock

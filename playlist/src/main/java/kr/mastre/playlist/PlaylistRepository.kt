@@ -1,4 +1,4 @@
-package kr.mastre.jaytv.playlist.domain
+package kr.mastre.playlist
 
 import io.reactivex.rxjava3.core.Single
 

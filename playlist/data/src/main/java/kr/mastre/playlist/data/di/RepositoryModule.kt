@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kr.mastre.jaytv.playlist.domain.PlaylistRepository
+import kr.mastre.playlist.PlaylistRepository
 import kr.mastre.playlist.data.PlaylistRepositoryImpl
 import javax.inject.Singleton
 

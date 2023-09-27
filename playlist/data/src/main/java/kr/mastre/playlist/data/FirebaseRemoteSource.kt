@@ -7,7 +7,7 @@ import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.rx3.rxSingle
 import kotlinx.coroutines.tasks.await
 import kotlinx.serialization.json.Json
-import kr.mastre.jaytv.playlist.domain.Playable
+import kr.mastre.playlist.Playable
 import javax.inject.Inject
 
 internal class FirebaseRemoteSource @Inject constructor(

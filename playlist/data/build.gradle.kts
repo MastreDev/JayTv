@@ -33,19 +33,18 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
 }
 
-kapt {
-    correctErrorTypes = true
-}
-
 dependencies {
 
-    implementation(project(":playlist:domain"))
+    implementation(project(":playlist"))
 
     // firebase Remote Config
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))

@@ -43,7 +43,7 @@ kapt {
 
 dependencies {
 
-    implementation(project(":playlist:domain"))
+    implementation(project(":playlist"))
 
     implementation(libs.androidx.ktx)
     implementation("androidx.appcompat:appcompat:1.6.1")
