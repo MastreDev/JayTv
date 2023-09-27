@@ -11,7 +11,7 @@ import org.orbitmvi.orbit.viewmodel.container
 import javax.inject.Inject
 
 @HiltViewModel
-internal class PlayerViewModel @Inject constructor(
+class PlayerViewModel @Inject constructor(
     val getPlayList: GetPlayListUseCase,
 ) : ViewModel(), ContainerHost<PlayerViewState, PlayerViewEffect> {
 

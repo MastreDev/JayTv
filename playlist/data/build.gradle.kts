@@ -8,10 +8,10 @@ plugins {
 
 android {
     namespace = "kr.mastre.playlist.data"
-    compileSdk = libs.versions.sdk.compile.get().toInt()
+    compileSdk = 34
 
     defaultConfig {
-        minSdk = libs.versions.sdk.min.get().toInt()
+        minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -47,21 +47,19 @@ dependencies {
     implementation(project(":playlist"))
 
     // firebase Remote Config
-    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
-    implementation("com.google.firebase:firebase-config-ktx")
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.config)
 
     implementation(libs.rxKotlin)
     implementation(libs.coroutinesToRx3)
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+    implementation(libs.kotlin.serialization.json)
 
     // hilt
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
 
-    testImplementation("junit:junit:4.13.2")
-    testImplementation(libs.kotest)
+    testImplementation(libs.bundles.test.android.unit)
 
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation(libs.bundles.test.android.ui)
 }

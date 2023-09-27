@@ -4,13 +4,12 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt)
 }
-
 android {
     namespace = "kr.mastre.feature.player"
-    compileSdk = libs.versions.sdk.compile.get().toInt()
+    compileSdk = 34
 
     defaultConfig {
-        minSdk = libs.versions.sdk.min.get().toInt()
+        minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -33,30 +32,25 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeKotlinVersion.get()
+        kotlinCompilerExtensionVersion = "1.5.2"
+    }
+    kapt {
+        correctErrorTypes = true
     }
 }
-
-kapt {
-    correctErrorTypes = true
-}
-
 dependencies {
 
     implementation(project(":playlist"))
 
     implementation(libs.androidx.ktx)
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-//    implementation("androidx.activity:activity-compose:1.7.2")
 
     //compose
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose.mobile)
+    debugImplementation(libs.compose.ui.tooling)
+
+    // coil
+    implementation(libs.bundles.coil)
 
     // hilt
     implementation(libs.hilt)
@@ -70,17 +64,9 @@ dependencies {
     implementation(libs.coroutinesToRx3)
 
     // exo
-    implementation("androidx.media3:media3-exoplayer:1.1.1")
-    implementation("androidx.media3:media3-exoplayer-dash:1.1.1")
-    implementation("androidx.media3:media3-ui:1.1.1")
+    implementation(libs.bundles.exoplayer)
 
-    testImplementation("junit:junit:4.13.2")
-    testImplementation(libs.androidx.junit.ext)
-    testImplementation(libs.kotlin.test)
-    testImplementation(libs.kotest.assertion)
-    testImplementation(libs.orbit.test)
-    testImplementation(libs.mockito)
+    testImplementation(libs.bundles.test.android.unit)
 
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation(libs.bundles.test.android.ui)
 }

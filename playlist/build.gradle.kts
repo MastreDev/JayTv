@@ -16,8 +16,9 @@ tasks.withType<Test>().configureEach {
 }
 
 dependencies {
-    implementation("javax.inject:javax.inject:1")
+    implementation(libs.injection)
+
     implementation(libs.rxKotlin)
 
-    testImplementation(libs.kotest)
+    testImplementation(libs.bundles.test.unit)
 }

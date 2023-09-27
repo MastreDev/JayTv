@@ -50,14 +50,14 @@ fun VideoPlayer() {
         }
     }
 
-    DisposableEffect(
-        AndroidView(factory = {
-            PlayerView(it).apply {
-                player = exoPlayer
-                layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-            }
-        })
-    ) {
+    AndroidView(factory = {
+        PlayerView(it).apply {
+            player = exoPlayer
+            layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        }
+    })
+
+    DisposableEffect(Unit) {
         onDispose {
             exoPlayer.release()
         }
