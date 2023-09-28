@@ -3,6 +3,7 @@ package kr.mastre.feature.player
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,11 +23,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.media3.common.MediaItem
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import coil.request.videoFrameMillis
 import kr.mastre.playlist.Playable
 import org.orbitmvi.orbit.compose.collectAsState
 
@@ -38,8 +39,9 @@ fun PlayerScreen(vm: PlayerViewModel = viewModel()) {
         VideoPlayer(
             modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(16/9f)
-                .background(Color.Black)
+                .aspectRatio(16 / 9f)
+                .background(Color.Black),
+            playable = { state.currentPlaying }
         )
         VideoPlayList(
             modifier = Modifier
@@ -47,18 +49,26 @@ fun PlayerScreen(vm: PlayerViewModel = viewModel()) {
                 .weight(1f, fill = true)
                 .background(Color.Gray),
             playlist = { state.playList },
+            onItemClick = { vm.onPlayableClick(it) }
         )
     }
 }
 
 @Composable
-internal fun VideoPlayer(modifier: Modifier = Modifier) {
+internal fun VideoPlayer(modifier: Modifier = Modifier, playable: () -> Playable?) {
     val context = LocalContext.current
     val exoPlayer = remember {
-        ExoPlayer.Builder(context).build().apply {
-            playWhenReady = true
-        }
+        ExoPlayer.Builder(context).build()
+            .apply {
+                playWhenReady = true
+            }
     }
+
+    playable()?.let {
+        exoPlayer.setMediaItem(MediaItem.fromUri(it.rawUri))
+        exoPlayer.prepare()
+    }
+
 
     AndroidView(modifier = modifier, factory = {
         PlayerView(it).apply {
@@ -73,17 +83,23 @@ internal fun VideoPlayer(modifier: Modifier = Modifier) {
 }
 
 @Composable
-internal fun VideoPlayList(modifier: Modifier = Modifier, playlist: () -> List<Playable>) {
+internal fun VideoPlayList(modifier: Modifier = Modifier, playlist: () -> List<Playable>, onItemClick: (Playable) -> Unit) {
     LazyColumn(modifier) {
         items(key = { it.rawUri }, items = playlist()) {
-            Cell(it.rawUri, it.thumbnail)
+            Cell(
+                Modifier
+                    .background(Color.White)
+                    .clickable { onItemClick(it) },
+                uri = it.rawUri,
+                thumbnail = it.thumbnail
+            )
         }
     }
 }
 
 @Composable
-internal fun Cell(uri: String, thumbnail: String?) {
-    Column(Modifier.background(Color.White)) {
+internal fun Cell(modifier: Modifier, uri: String, thumbnail: String?) {
+    Column(modifier) {
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(thumbnail)
