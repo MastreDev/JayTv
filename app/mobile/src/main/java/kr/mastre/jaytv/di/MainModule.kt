@@ -11,7 +11,6 @@ import dagger.hilt.components.SingletonComponent
 internal object MainModule {
     @Provides
     fun provideFirebaseRemoteConfig() : FirebaseRemoteConfig {
-        println("GOT IT !!!!! << ==========")
         return FirebaseRemoteConfig.getInstance()
     }
 

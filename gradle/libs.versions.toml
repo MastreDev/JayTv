@@ -24,7 +24,8 @@ compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview"
 compose-ui-grapchics = { module = "androidx.compose.ui:ui-graphics" }
 compose-material3 = { module = "androidx.compose.material3:material3" }
 compose-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version = "2.6.2" }
-compose-navigation = { module = "androidx.navigation:navigation-compose", version = "2.7.2" }
+compose-navigation = { module = "androidx.navigation:navigation-compose", version = "2.7.3" }
+compose-navigation-hilt = {module = "androidx.hilt:hilt-navigation-compose", version ="1.0.0"}
 compose-tv-foundation = { module = "androidx.tv:tv-foundation", version.ref = "compose-tv" }
 compose-tv-material = { module = "androidx.tv:tv-material", version.ref = "compose-tv" }
 

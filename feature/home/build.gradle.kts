@@ -1,31 +1,24 @@
 plugins {
-    alias(libs.plugins.agp.app)
+    alias(libs.plugins.agp.lib)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt)
-    alias(libs.plugins.google.services)
 }
 
 android {
-    namespace = "kr.mastre.jaytv"
-    compileSdk = 34
+    namespace = "kr.mastre.feature.home"
+    compileSdk = 33
 
     defaultConfig {
-        applicationId = "kr.mastre.jaytv"
-        minSdk = 26
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = 24
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = true //코드 최적화
+            isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -42,11 +35,6 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.2"
     }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
     kapt {
         correctErrorTypes = true
     }
@@ -54,33 +42,31 @@ android {
 
 dependencies {
 
-    implementation(project(":feature:home"))
-    implementation(project(":feature:player"))
     implementation(project(":playlist"))
-    implementation(project(":playlist:data"))
 
-    // compose
+    implementation(libs.androidx.ktx)
+
+    //compose
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose.mobile)
-    implementation(libs.compose.navigation.hilt)
     debugImplementation(libs.compose.ui.tooling)
 
     // coil
     implementation(libs.bundles.coil)
-
-    // exo
-    implementation(libs.bundles.exoplayer)
 
     // hilt
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
 
     // orbit
-    implementation(libs.orbit)
+    implementation(libs.bundles.orbit)
 
-    // firebase
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.config)
+    // rx
+    implementation(libs.rxKotlin)
+    implementation(libs.coroutinesToRx3)
+
+    // exo
+    implementation(libs.bundles.exoplayer)
 
     testImplementation(libs.bundles.test.android.unit)
 

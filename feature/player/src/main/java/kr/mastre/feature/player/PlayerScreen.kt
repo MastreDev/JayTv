@@ -22,7 +22,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.media3.common.MediaItem
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
@@ -32,7 +31,7 @@ import kr.mastre.playlist.Playable
 import org.orbitmvi.orbit.compose.collectAsState
 
 @Composable
-fun PlayerScreen(vm: PlayerViewModel = viewModel()) {
+fun PlayerScreen(vm: PlayerViewModel) {
     val state by vm.collectAsState()
 
     Column {
