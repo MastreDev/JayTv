@@ -1,17 +1,16 @@
 plugins {
     alias(libs.plugins.agp.lib)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt)
 }
 
 android {
-    namespace = "kr.mastre.playlist.data"
-    compileSdk = 34
+    namespace = "kr.mastre.feature.home"
+    compileSdk = 33
 
     defaultConfig {
-        minSdk = 26
+        minSdk = 24
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -23,9 +22,6 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    buildFeatures {
-        buildConfig = true
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -33,27 +29,44 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.2"
+    }
     kapt {
         correctErrorTypes = true
     }
-}
-
-tasks.withType<Test>().configureEach {
-    useJUnitPlatform()
 }
 
 dependencies {
 
     implementation(project(":playlist"))
 
-    implementation(libs.rxKotlin)
-    implementation(libs.coroutinesToRx3)
+    implementation(libs.androidx.ktx)
 
-    implementation(libs.kotlin.serialization.json)
+    //compose
+    implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose.mobile)
+    debugImplementation(libs.compose.ui.tooling)
+
+    // coil
+    implementation(libs.bundles.coil)
 
     // hilt
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
+
+    // orbit
+    implementation(libs.bundles.orbit)
+
+    // rx
+    implementation(libs.rxKotlin)
+    implementation(libs.coroutinesToRx3)
+
+    // exo
+    implementation(libs.bundles.exoplayer)
 
     testImplementation(libs.bundles.test.android.unit)
 

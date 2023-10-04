@@ -3,16 +3,18 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
     namespace = "kr.mastre.jaytv"
-    compileSdk = libs.versions.sdk.compile.get().toInt()
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "kr.mastre.jaytv"
-        minSdk = libs.versions.sdk.min.get().toInt()
-        targetSdk = libs.versions.sdk.target.get().toInt()
+        minSdk = 26
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -24,7 +26,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true //코드 최적화
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -39,48 +41,53 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeKotlinVersion.get()
+        kotlinCompilerExtensionVersion = "1.5.2"
     }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-}
-
-kapt {
-    correctErrorTypes = true
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
 
-    implementation(libs.androidx.ktx)
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
-    implementation("androidx.activity:activity-compose:1.7.2")
+    implementation(project(":feature:home"))
+    implementation(project(":feature:player"))
+    implementation(project(":playlist"))
+    implementation(project(":playlist:data"))
 
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    // compose
+    implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose.mobile)
+    implementation(libs.compose.navigation.hilt)
+    debugImplementation(libs.compose.ui.tooling)
 
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
+    // coil
+    implementation(libs.bundles.coil)
 
     // exo
-    implementation("androidx.media3:media3-exoplayer:1.1.1")
-    implementation("androidx.media3:media3-exoplayer-dash:1.1.1")
-    implementation("androidx.media3:media3-ui:1.1.1")
+    implementation(libs.bundles.exoplayer)
 
     // hilt
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
 
-    testImplementation("junit:junit:4.13.2")
+    // orbit
+    implementation(libs.orbit)
 
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    // firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.config)
+    implementation(libs.kotlin.serialization.json)
 
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation(libs.rxKotlin)
+    implementation(libs.coroutinesToRx3)
+
+    testImplementation(libs.bundles.test.android.unit)
+
+    androidTestImplementation(libs.bundles.test.android.ui)
 }

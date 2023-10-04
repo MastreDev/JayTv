@@ -4,13 +4,12 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt)
 }
-
 android {
     namespace = "kr.mastre.feature.player"
-    compileSdk = libs.versions.sdk.compile.get().toInt()
+    compileSdk = 34
 
     defaultConfig {
-        minSdk = libs.versions.sdk.min.get().toInt()
+        minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -29,23 +28,45 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.2"
+    }
+    kapt {
+        correctErrorTypes = true
+    }
 }
-
-kapt {
-    correctErrorTypes = true
-}
-
 dependencies {
 
+    implementation(project(":playlist"))
+
     implementation(libs.androidx.ktx)
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
+
+    //compose
+    implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose.mobile)
+    debugImplementation(libs.compose.ui.tooling)
+
+    // coil
+    implementation(libs.bundles.coil)
 
     // hilt
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    // orbit
+    implementation(libs.bundles.orbit)
+
+    // rx
+    implementation(libs.rxKotlin)
+    implementation(libs.coroutinesToRx3)
+
+    // exo
+    implementation(libs.bundles.exoplayer)
+
+    testImplementation(libs.bundles.test.android.unit)
+
+    androidTestImplementation(libs.bundles.test.android.ui)
 }

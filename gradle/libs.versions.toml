@@ -1,44 +1,65 @@
 [versions]
-# gradle version
-sdk-compile = "34"
-sdk-min = "26"
-sdk-target = "34"
-
-composeKotlinVersion = "1.5.2"
 agp = "8.1.1"
-
 kotlin = "1.9.0"
-
-composeBom = "2023.03.00"
+composeBom = "2023.09.01"
+compose-tv = "1.0.0-alpha09"
 rxKotlin = "3.0.1"
 coroutinesToRx3 = "1.7.0"
 hilt = "2.48"
+orbit = "6.1.0"
+exoplayer = "1.1.1"
+firebase = "32.3.1"
+coil = "2.4.0"
 
 #test
 kotest = "5.7.2"
+mockito = "5.1.0"
 
 [libraries]
-#androidx.core:core-ktx:1.9.0
 androidx-ktx = { module = "androidx.core:core-ktx", version.ref = "kotlin" }
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
-androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+compose-activity = { module = "androidx.activity:activity-compose", version = "1.7.2" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+compose-ui-grapchics = { module = "androidx.compose.ui:ui-graphics" }
+compose-material3 = { module = "androidx.compose.material3:material3" }
+compose-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version = "2.6.2" }
+compose-navigation = { module = "androidx.navigation:navigation-compose", version = "2.7.3" }
+compose-navigation-hilt = {module = "androidx.hilt:hilt-navigation-compose", version ="1.0.0"}
+compose-tv-foundation = { module = "androidx.tv:tv-foundation", version.ref = "compose-tv" }
+compose-tv-material = { module = "androidx.tv:tv-material", version.ref = "compose-tv" }
 
+coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+coil-video = {module = "io.coil-kt:coil-video", version.ref ="coil"}
 rxKotlin = { module = "io.reactivex.rxjava3:rxkotlin", version.ref = "rxKotlin" }
 coroutinesToRx3 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-rx3", version.ref = "coroutinesToRx3" }
-
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+orbit = { module = "org.orbit-mvi:orbit-viewmodel", version.ref = "orbit" }
+orbit-compose = { module = "org.orbit-mvi:orbit-compose", version.ref = "orbit" }
+exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "exoplayer" }
+exoplayer-dash = { module = "androidx.media3:media3-exoplayer-dash", version.ref = "exoplayer" }
+exoplayer-ui = { module = "androidx.media3:media3-ui", version.ref = "exoplayer" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase" }
+firebase-config = { module = "com.google.firebase:firebase-config-ktx" }
+injection = { module = "javax.inject:javax.inject", version = "1" }
+kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.6.0" }
 
 #test
+junit = { module = "junit:junit", version = "4.13.2" }
+junit-ext = { module = "androidx.test.ext:junit-ktx", version = "1.1.5" }
+kotlin-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version = "1.7.3" }
 kotest = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
+kotest-assertion = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+mockito = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockito" }
+orbit-test = { module = "org.orbit-mvi:orbit-test", version.ref = "orbit" }
+android-junit-ext = { module = "androidx.test.ext:junit", version = "1.1.5" }
+android-espresso-core = { module = "androidx.test.espresso:espresso-core", version = "3.5.1" }
 
 [plugins]
 agp-app = { id = "com.android.application", version.ref = "agp" }
 agp-lib = { id = "com.android.library", version.ref = "agp" }
-
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
@@ -47,4 +68,11 @@ kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 google-services = { id = "com.google.gms.google-services", version = "4.3.15" }
 
 [bundles]
-
+orbit = ["orbit", "orbit-compose"]
+compose-tv = ["compose-activity", "compose-tv-foundation", "compose-tv-material", "compose-viewmodel", "compose-navigation"]
+compose-mobile = ["compose-activity", "compose-material3", "compose-viewmodel", "compose-navigation", "compose-ui-tooling-preview"]
+exoplayer = ["exoplayer", "exoplayer-dash", "exoplayer-ui"]
+test-android-unit = ["junit", "junit-ext", "kotlin-test", "kotest-assertion", "orbit-test", "mockito"]
+test-unit = ["junit", "kotlin-test", "kotest-assertion", "mockito"]
+test-android-ui = ["android-junit-ext", "android-espresso-core"]
+coil = ["coil", "coil-video"]

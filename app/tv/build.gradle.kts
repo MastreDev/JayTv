@@ -7,15 +7,14 @@ plugins {
 
 android {
     namespace = "kr.mastre.jaytv.tv"
-    compileSdk = libs.versions.sdk.compile.get().toInt()
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "kr.mastre.jaytv.tv"
-        minSdk = libs.versions.sdk.min.get().toInt()
-        targetSdk = libs.versions.sdk.target.get().toInt()
+        minSdk = 26
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
     }
 
     buildTypes {
@@ -35,17 +34,16 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeKotlinVersion.get()
+        kotlinCompilerExtensionVersion = "1.5.2"
     }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-}
-
-kapt {
-    correctErrorTypes = true
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
@@ -53,25 +51,17 @@ dependencies {
     implementation(libs.androidx.ktx)
 
     // compose
-    val composeBom = platform(libs.androidx.compose.bom)
-    implementation(composeBom)
-    implementation(libs.androidx.compose.ui.tooling)
-    implementation("androidx.tv:tv-foundation:1.0.0-alpha09")
-    implementation("androidx.tv:tv-material:1.0.0-alpha09")
-    implementation("androidx.activity:activity-compose:1.7.2")
+    implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose.tv)
 
-    // view model
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
-    // navigation
-    implementation("androidx.navigation:navigation-compose:2.7.2")
-    // async image loading
-    implementation("io.coil-kt:coil-compose:2.2.2")
     // hilt
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
 
     // exo
-    implementation("androidx.media3:media3-exoplayer:1.1.1")
-    implementation("androidx.media3:media3-exoplayer-dash:1.1.1")
-    implementation("androidx.media3:media3-ui:1.1.1")
+    implementation(libs.bundles.exoplayer)
+
+    testImplementation(libs.bundles.test.android.unit)
+
+    androidTestImplementation(libs.bundles.test.android.ui)
 }
