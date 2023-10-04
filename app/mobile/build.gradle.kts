@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt)
     alias(libs.plugins.google.services)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -81,6 +82,10 @@ dependencies {
     // firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.config)
+    implementation(libs.kotlin.serialization.json)
+
+    implementation(libs.rxKotlin)
+    implementation(libs.coroutinesToRx3)
 
     testImplementation(libs.bundles.test.android.unit)
 

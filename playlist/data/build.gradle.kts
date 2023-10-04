@@ -46,10 +46,6 @@ dependencies {
 
     implementation(project(":playlist"))
 
-    // firebase Remote Config
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.config)
-
     implementation(libs.rxKotlin)
     implementation(libs.coroutinesToRx3)
 

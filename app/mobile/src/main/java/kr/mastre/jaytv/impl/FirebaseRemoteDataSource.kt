@@ -1,4 +1,4 @@
-package kr.mastre.playlist.data
+package kr.mastre.jaytv.impl
 
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.ktx.get
@@ -7,12 +7,14 @@ import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.rx3.rxSingle
 import kotlinx.coroutines.tasks.await
 import kotlinx.serialization.json.Json
-import kr.mastre.playlist.Playable
+import kr.mastre.playlist.data.BuildConfig
+import kr.mastre.playlist.data.PlayableDto
+import kr.mastre.playlist.data.PlaylistRemoteDataSource
 import javax.inject.Inject
 
-internal class FirebaseRemoteSource @Inject constructor(
+internal class FirebaseRemoteDataSource @Inject constructor(
     private val remoteConfig: FirebaseRemoteConfig,
-) {
+) : PlaylistRemoteDataSource {
 
     init {
         val configSetting = remoteConfigSettings {
@@ -21,7 +23,7 @@ internal class FirebaseRemoteSource @Inject constructor(
         remoteConfig.setConfigSettingsAsync(configSetting)
     }
 
-    fun fetchPlayList(): Single<List<Playable>> {
+    override fun fetchPlayList(): Single<List<PlayableDto>> {
         return rxSingle {
             remoteConfig.fetchAndActivate().await()
             val configs = remoteConfig["arami_playlist"].asString().let { Json.decodeFromString<GetPlayListResponse>(it) }
