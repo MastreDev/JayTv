@@ -4,7 +4,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kr.mastre.jaytv.impl.FirebaseRemoteDataSource
+import kr.mastre.jaytv.firebase.FirebaseRemoteDataSource
 import kr.mastre.playlist.data.PlaylistRemoteDataSource
 import javax.inject.Singleton
 

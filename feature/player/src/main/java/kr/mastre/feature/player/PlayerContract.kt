@@ -2,11 +2,13 @@ package kr.mastre.feature.player
 
 import kr.mastre.playlist.Playable
 
-data class PlayerViewState(
+internal data class ViewState(
     var currentPlaying: Playable? = null,
-    val playList: List<Playable>,
-)
+    private val _playList: List<Playable>,
+) {
+    val playList get() = _playList.filter { it.rawUri != currentPlaying?.rawUri }
+}
 
-sealed interface PlayerViewEffect {
+internal sealed interface ViewEffect {
 
 }

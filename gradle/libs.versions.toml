@@ -70,7 +70,7 @@ google-services = { id = "com.google.gms.google-services", version = "4.3.15" }
 [bundles]
 orbit = ["orbit", "orbit-compose"]
 compose-tv = ["compose-activity", "compose-tv-foundation", "compose-tv-material", "compose-viewmodel", "compose-navigation"]
-compose-mobile = ["compose-activity", "compose-material3", "compose-viewmodel", "compose-navigation", "compose-ui-tooling-preview"]
+compose-mobile = ["compose-activity", "compose-material3", "compose-viewmodel", "compose-navigation", "compose-navigation-hilt", "compose-ui-tooling-preview"]
 exoplayer = ["exoplayer", "exoplayer-dash", "exoplayer-ui"]
 test-android-unit = ["junit", "junit-ext", "kotlin-test", "kotest-assertion", "orbit-test", "mockito"]
 test-unit = ["junit", "kotlin-test", "kotest-assertion", "mockito"]

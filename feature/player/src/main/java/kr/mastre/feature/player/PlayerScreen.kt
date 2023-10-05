@@ -31,7 +31,7 @@ import kr.mastre.playlist.Playable
 import org.orbitmvi.orbit.compose.collectAsState
 
 @Composable
-fun PlayerScreen(vm: PlayerViewModel) {
+internal fun PlayerScreen(vm: PlayerViewModel) {
     val state by vm.collectAsState()
 
     Column {

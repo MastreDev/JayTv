@@ -2,9 +2,10 @@ package kr.mastre.feature.home
 
 import kr.mastre.playlist.Playable
 
-data class ViewState(
+internal data class ViewState(
     val playList: List<Playable>,
 )
 
-sealed interface ViewEffect {
+internal sealed interface ViewEffect {
+    data class NavigateToPlayer(val playable: Playable) : ViewEffect
 }

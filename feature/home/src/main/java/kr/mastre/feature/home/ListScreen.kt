@@ -20,15 +20,21 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import kr.mastre.playlist.Playable
 import org.orbitmvi.orbit.compose.collectAsState
+import org.orbitmvi.orbit.compose.collectSideEffect
 
 @Composable
-fun ListScreen(vm: ListViewModel) {
+internal fun ListScreen(vm: ListViewModel, onNavigateToPlayer: (Playable) -> Unit) {
     val state by vm.collectAsState()
     PlayList(
         modifier = Modifier.fillMaxWidth(),
         playlist = { state.playList },
         onItemClick = { vm.onItemClick(it) }
     )
+    vm.collectSideEffect {
+        when(it) {
+            is ViewEffect.NavigateToPlayer -> onNavigateToPlayer(it.playable)
+        }
+    }
 }
 
 @Composable
