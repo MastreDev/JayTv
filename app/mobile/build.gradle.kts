@@ -63,7 +63,6 @@ dependencies {
     // compose
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose.mobile)
-    implementation(libs.compose.navigation.hilt)
     debugImplementation(libs.compose.ui.tooling)
 
     // coil

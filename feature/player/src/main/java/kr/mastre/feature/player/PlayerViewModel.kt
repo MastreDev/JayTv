@@ -1,5 +1,6 @@
 package kr.mastre.feature.player
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.rx3.await
@@ -13,17 +14,22 @@ import org.orbitmvi.orbit.viewmodel.container
 import javax.inject.Inject
 
 @HiltViewModel
-class PlayerViewModel @Inject constructor(
+internal class PlayerViewModel @Inject constructor(
     val getPlayList: GetPlayListUseCase,
-) : ViewModel(), ContainerHost<PlayerViewState, PlayerViewEffect> {
+    savedStateHandle: SavedStateHandle,
+) : ViewModel(), ContainerHost<ViewState, ViewEffect> {
 
-    override val container: Container<PlayerViewState, PlayerViewEffect> = container(PlayerViewState(playList = listOf())) {
+    private val args = PlayerArgs(savedStateHandle)
+
+    override val container: Container<ViewState, ViewEffect> = container(ViewState(_playList = listOf())) {
         val result = getPlayList.invoke(GetPlayListUseCase.Params()).await()
-        reduce { state.copy(playList = result) }
+        reduce { state.copy(_playList = result, currentPlaying = MyPlay(rawUri = args.uri, thumbnail = args.uri)) }
     }
 
     fun onPlayableClick(playable: Playable) = intent {
         reduce { state.copy(currentPlaying = playable) }
     }
+
+    data class MyPlay(override val rawUri: String, override val thumbnail: String?) : Playable
 
 }

@@ -1,4 +1,4 @@
-package kr.mastre.jaytv.impl
+package kr.mastre.jaytv.firebase
 
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.ktx.get
